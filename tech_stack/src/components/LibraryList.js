@@ -11,7 +11,7 @@ class LibraryList extends Component {
   }
 }
 
-// take application state obj which sits in the Store, and pull some properties and put in the props
+// get state => pull substate => return as props which will be passed to component by connect
 const mapStateToProps = (state) => {
   return { libraries: state.libraries };
 };
