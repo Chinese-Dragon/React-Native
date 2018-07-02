@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, TouchableWithoutFeedback, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { connect } from 'react-redux';
 import { CardSection } from './common';
 // export all action creators as actions from index.js under actions folder
@@ -14,7 +14,7 @@ class ListItem extends Component {
     const selectedLibraryId = this.props.selectedLibraryId;
 
     return (
-      <TouchableWithoutFeedback onPress={() => this.props.selectLibrary(id)} >
+      <TouchableOpacity onPress={() => this.props.selectLibrary(id)} >
         <View>
           <CardSection>
             <Text style={titleStyle}>
@@ -22,7 +22,7 @@ class ListItem extends Component {
             </Text>;
           </CardSection>
         </View>
-      </TouchableWithoutFeedback>
+      </TouchableOpacity>
     );
   }
 }
