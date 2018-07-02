@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { connect } from 'react-redux';
 import { CardSection } from './common';
+// export all action creators as actions from index.js under actions folder
+import * as actions from '../actions';
 
 class ListItem extends Component {
 
@@ -11,17 +13,17 @@ class ListItem extends Component {
     const selectedLibraryId = this.props.selectedLibraryId;
     const { titleStyle } = styles;
 
-    console.log(selectedLibraryId);
-    console.log(libraryId);
-
     if (selectedLibraryId === libraryId) {
       return <Text style={titleStyle}>{`${libraryTitle} selected!!!`}</Text>;
     }
 
     return <Text style={titleStyle}>{libraryTitle}</Text>;
   }
+
   //const { titleStyle } = styles;
   render() {
+    console.log(this.props);
+
     return (
       <CardSection>
         {this.showContent()};
@@ -42,4 +44,10 @@ const mapStateToProps = (state) => {
   return { selectedLibraryId: state.selectedLibraryId };
 };
 
-export default connect(mapStateToProps)(ListItem);
+/*
+connect's second argument:
+  1. pass action creators to listItem's props;
+  2. connect to redux store, whenever any action creator is called,
+  it will be dispatch to store automatically (we don't need to call store.dispatch()!!)
+*/
+export default connect(mapStateToProps, actions)(ListItem);
