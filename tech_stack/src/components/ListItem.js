@@ -6,12 +6,18 @@ import { CardSection } from './common';
 import * as actions from '../actions';
 
 class ListItem extends Component {
-
+  renderDescription() {
+    const { library, selectedLibraryId } = this.props;
+    if (selectedLibraryId === library.item.id) {
+      return (
+        <Text>{library.item.description}</Text>
+      );
+    }
+  }
   //const { titleStyle } = styles;
   render() {
     const { titleStyle } = styles;
     const { id, title } = this.props.library.item;
-    const selectedLibraryId = this.props.selectedLibraryId;
 
     return (
       <TouchableOpacity onPress={() => this.props.selectLibrary(id)} >
@@ -21,6 +27,7 @@ class ListItem extends Component {
               {title}
             </Text>;
           </CardSection>
+          {this.renderDescription()}
         </View>
       </TouchableOpacity>
     );
