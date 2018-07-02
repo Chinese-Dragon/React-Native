@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
-
+import { FlatList } from 'react-native';
 // we need to reach to redux state and pull the libraryList data out of it and display here
 // USe connect tool to wrap the component so that it can ask for data from provider
 import { connect } from 'react-redux';
+import ListItem from './ListItem';
 
 class LibraryList extends Component {
+  renderItem(library) {
+    // need to return the component for the current library to be rendered
+    return <ListItem library={library} />;
+  }
   render() {
-    console.log(this.props);
-    return;
+    return (
+      <FlatList
+        data={this.props.libraries}
+        renderItem={this.renderItem}
+        keyExtractor={library => library.id.toString()}
+      />
+    );
   }
 }
 
